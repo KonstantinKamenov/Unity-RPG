@@ -1001,18 +1001,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3260567811760426957, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
-      propertyPath: m_Speed
-      value: 5.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 3260567811760426957, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
-      propertyPath: m_Acceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3260567811760426957, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 7200
-      objectReference: {fileID: 0}
     - target: {fileID: 5562367129262661025, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
       propertyPath: m_Name
       value: Player
