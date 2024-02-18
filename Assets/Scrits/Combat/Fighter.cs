@@ -16,7 +16,7 @@ namespace RPG.Combat
         [SerializeField]
         private float damage = 10f;
 
-        private Transform target;
+        private Health target;
         private float timeSinceLastAttack = 0f;
 
         private void Awake()
@@ -29,39 +29,49 @@ namespace RPG.Combat
             timeSinceLastAttack += Time.deltaTime;
 
             if (target == null) return;
+            if (target.IsDead()) return;
 
-            if (Vector3.Distance(transform.position, target.position) > weaponRange)
+            if (Vector3.Distance(transform.position, target.transform.position) > weaponRange)
             {
-                mover.MoveTo(target.position);
+                mover.MoveTo(target.transform.position);
             }
             else
             {
                 mover.Cancel();
+                AttackBehaviour();
+            }
+        }
 
-                if (timeSinceLastAttack >= timeBetweenAttacks)
-                {
-                    GetComponent<Animator>().SetTrigger("attack");
-                    timeSinceLastAttack = 0f;
-                }
+        private void AttackBehaviour()
+        {
+            transform.LookAt(target.transform);
+
+            if (timeSinceLastAttack >= timeBetweenAttacks)
+            {
+                GetComponent<Animator>().SetTrigger("attack");
+                GetComponent<Animator>().ResetTrigger("stopAttack");
+                timeSinceLastAttack = 0f;
             }
         }
 
         public void Attack(CombatTarget combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.transform;
+            target = combatTarget.GetComponent<Health>();
         }
 
         public void Cancel()
         {
+            GetComponent<Animator>().SetTrigger("stopAttack");
+            GetComponent<Animator>().ResetTrigger("attack");
             target = null;
         }
 
         //Animation event
         public void Hit()
         {
-            Health enemyHealth = target.GetComponent<Health>();
-            enemyHealth.TakeDamage(damage);
+            if (target == null) return;
+            target.TakeDamage(damage);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Movement;
 using RPG.Combat;
+using System;
 
 namespace RPG.Control
 {
@@ -18,18 +19,27 @@ namespace RPG.Control
         {
 
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            CombatTarget finalTarget = null;
+            float minDist = Mathf.Infinity;
+
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null) continue;
+                if (target == null || !target.IsValidTarget()) continue;
 
-                if (Input.GetMouseButton(0))
+                if (hit.distance < minDist)
                 {
-                    GetComponent<Fighter>().Attack(target);
+                    minDist = hit.distance;
+                    finalTarget = target;
                 }
-                return true;
             }
-            return false;
+            if (finalTarget == null) return false;
+
+            if (Input.GetMouseButton(0))
+            {
+                GetComponent<Fighter>().Attack(finalTarget);
+            }
+            return true;
         }
 
         private bool InteractWithMovement()
