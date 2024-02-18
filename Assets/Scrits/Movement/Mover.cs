@@ -9,7 +9,7 @@ namespace RPG.Movement
 {
     public class Mover : MonoBehaviour, IAction
     {
-        NavMeshAgent navMeshAgent;
+        private NavMeshAgent navMeshAgent;
 
         private void Awake()
         {

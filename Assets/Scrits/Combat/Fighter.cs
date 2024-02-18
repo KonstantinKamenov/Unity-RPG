@@ -7,14 +7,17 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
-        Mover mover;
+        private Mover mover;
 
-        [SerializeField] float weaponRange = 2.0f;
-        [SerializeField] float timeBetweenAttacks = 1f;
-        [SerializeField] float damage = 10f;
+        [SerializeField]
+        private float weaponRange = 2.0f;
+        [SerializeField]
+        private float timeBetweenAttacks = 1f;
+        [SerializeField]
+        private float damage = 10f;
 
-        Transform target;
-        float timeSinceLastAttack = 0f;
+        private Transform target;
+        private float timeSinceLastAttack = 0f;
 
         private void Awake()
         {

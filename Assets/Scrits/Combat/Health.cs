@@ -5,9 +5,10 @@ namespace RPG.Combat
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] float health = 100f;
+        [SerializeField]
+        private float health = 100f;
 
-        bool isDead = false;
+        private bool isDead = false;
 
         public void TakeDamage(float damage)
         {
