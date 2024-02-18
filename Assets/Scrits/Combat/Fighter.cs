@@ -10,8 +10,10 @@ namespace RPG.Combat
         Mover mover;
 
         [SerializeField] float weaponRange = 2.0f;
+        [SerializeField] float timeBetweenAttacks = 1f;
 
         Transform target;
+        float timeSinceLastAttack = 0f;
 
         private void Awake()
         {
@@ -20,6 +22,8 @@ namespace RPG.Combat
 
         private void Update()
         {
+            timeSinceLastAttack += Time.deltaTime;
+
             if (target == null) return;
 
             if (Vector3.Distance(transform.position, target.position) > weaponRange)
@@ -29,6 +33,12 @@ namespace RPG.Combat
             else
             {
                 mover.Cancel();
+
+                if (timeSinceLastAttack >= timeBetweenAttacks)
+                {
+                    GetComponent<Animator>().SetTrigger("attack");
+                    timeSinceLastAttack = 0f;
+                }
             }
         }
 
@@ -41,6 +51,12 @@ namespace RPG.Combat
         public void Cancel()
         {
             target = null;
+        }
+
+        //Animation event
+        public void Hit()
+        {
+
         }
     }
 }
