@@ -6,8 +6,7 @@ namespace RPG.Core
 {
     public class FollowCamera : MonoBehaviour
     {
-        [SerializeField]
-        private Transform target;
+        [SerializeField] private Transform target;
 
         private void LateUpdate()
         {

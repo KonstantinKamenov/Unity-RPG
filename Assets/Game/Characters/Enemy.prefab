@@ -153,7 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb06844e4ed36142b2ad552aeb673f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetType: 1
 --- !u!114 &6527371830712967135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +166,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseDistance: 5
+  suspicionDuration: 2
+  path: {fileID: 0}
+  waypointTolerance: 0.5
 --- !u!4 &4527316685578053716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5928201180268243870, guid: d8444b2e89be9a441846b13b281006e4, type: 3}

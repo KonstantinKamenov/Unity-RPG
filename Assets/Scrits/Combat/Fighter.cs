@@ -9,12 +9,9 @@ namespace RPG.Combat
     {
         private Mover mover;
 
-        [SerializeField]
-        private float weaponRange = 2.0f;
-        [SerializeField]
-        private float timeBetweenAttacks = 1f;
-        [SerializeField]
-        private float damage = 10f;
+        [SerializeField] private float weaponRange = 2.0f;
+        [SerializeField] private float timeBetweenAttacks = 1f;
+        [SerializeField] private float damage = 10f;
 
         private Health target;
         private float timeSinceLastAttack = 0f;
