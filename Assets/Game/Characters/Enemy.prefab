@@ -74,6 +74,10 @@ PrefabInstance:
       propertyPath: health
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 3260567811760426957, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5562367129262661025, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -128,6 +132,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5562367129262661025, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5602007137002329825}
+    - targetCorrespondingSourceObject: {fileID: 5562367129262661025, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6527371830712967135}
   m_SourcePrefab: {fileID: 100100000, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
 --- !u!1 &2422952506429939307 stripped
 GameObject:
@@ -146,6 +153,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb06844e4ed36142b2ad552aeb673f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetType: 1
+--- !u!114 &6527371830712967135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2422952506429939307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87fb31e60cc637748a3655753f28118f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chaseDistance: 5
 --- !u!4 &4527316685578053716 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5928201180268243870, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
