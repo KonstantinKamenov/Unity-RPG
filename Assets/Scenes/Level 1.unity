@@ -604,7 +604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484771548}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04819199, y: 0.88302183, z: -0.093017355, w: 0.45749074}
+  m_LocalRotation: {x: 0.04819199, y: 0.88302183, z: -0.09301736, w: 0.45749074}
   m_LocalPosition: {x: 24.609678, y: 5.621686, z: -5.8669333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -699,7 +699,7 @@ Transform:
   m_GameObject: {fileID: 515446517}
   serializedVersion: 2
   m_LocalRotation: {x: -0.32275936, y: -0.294855, z: 0.10657359, w: -0.8930448}
-  m_LocalPosition: {x: -56.015488, y: 24.234373, z: -80.228546}
+  m_LocalPosition: {x: -56.094105, y: 24.234375, z: -80.20329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -722,7 +722,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 100
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 80673436}
@@ -997,7 +997,7 @@ Transform:
   m_GameObject: {fileID: 597850432}
   serializedVersion: 2
   m_LocalRotation: {x: -0.32275936, y: -0.294855, z: 0.10657359, w: -0.8930448}
-  m_LocalPosition: {x: -56.015488, y: 24.234373, z: -80.228546}
+  m_LocalPosition: {x: -56.094105, y: 24.234375, z: -80.20329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1136,7 +1136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 610169733}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1691,6 +1691,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Hut_01
       objectReference: {fileID: 0}
+    - target: {fileID: 196646, guid: 5a346deceb21d0c4781e67a70fbcc1f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 409538, guid: 5a346deceb21d0c4781e67a70fbcc1f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24.016045
@@ -2083,6 +2087,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Bld_Hut_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 196646, guid: 5a346deceb21d0c4781e67a70fbcc1f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 409538, guid: 5a346deceb21d0c4781e67a70fbcc1f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.156044
@@ -2139,6 +2147,10 @@ PrefabInstance:
     - target: {fileID: 139386, guid: c2849fd453abd0445a702a035f04ac60, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Crate_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 139386, guid: c2849fd453abd0445a702a035f04ac60, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 139386, guid: c2849fd453abd0445a702a035f04ac60, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2581,7 +2593,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -2592,8 +2604,8 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 10
-  m_NavMeshData: {fileID: 23800000, guid: 47f0ff6e6738b7a4ca5d6684e48ddf70, type: 2}
-  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: d1bc15b733d43cf4bb8e2a588b6c86e4, type: 2}
+  m_BuildHeightMesh: 1
 --- !u!1 &1768510983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,7 +2704,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7356441027192627082, guid: c6ad1c5f1932c8a48ae32052c6ae0af6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -50.52138
+      value: -50.6
       objectReference: {fileID: 0}
     - target: {fileID: 7356441027192627082, guid: c6ad1c5f1932c8a48ae32052c6ae0af6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2700,7 +2712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7356441027192627082, guid: c6ad1c5f1932c8a48ae32052c6ae0af6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -72.81526
+      value: -72.79
       objectReference: {fileID: 0}
     - target: {fileID: 7356441027192627082, guid: c6ad1c5f1932c8a48ae32052c6ae0af6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2795,6 +2807,10 @@ PrefabInstance:
     - target: {fileID: 196646, guid: 5a346deceb21d0c4781e67a70fbcc1f6, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Hut_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 196646, guid: 5a346deceb21d0c4781e67a70fbcc1f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 409538, guid: 5a346deceb21d0c4781e67a70fbcc1f6, type: 3}
       propertyPath: m_LocalPosition.x
