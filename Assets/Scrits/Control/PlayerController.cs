@@ -55,7 +55,7 @@ namespace RPG.Control
         private bool InteractWithMovement()
         {
             RaycastHit hit;
-            bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
+            bool hasHit = Physics.Raycast(GetMouseRay(), out hit, Mathf.Infinity, LayerMask.GetMask("Ground"));
             if (hasHit)
             {
                 if (Input.GetMouseButton(0))
