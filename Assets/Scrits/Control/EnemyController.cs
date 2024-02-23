@@ -12,7 +12,8 @@ namespace RPG.Combat
         [SerializeField] private float suspicionDuration = 2.0f;
         [SerializeField] private float dwellDuration = 1.0f;
         [SerializeField] private PatrolPath path;
-        [SerializeField] float waypointTolerance = 0.5f;
+        [SerializeField] private float waypointTolerance = 0.5f;
+        [SerializeField] private float patrolSpeedFraction = 0.5f;
 
         private Vector3 guardPosition;
         private float timeSinceLastSawPlayer = Mathf.Infinity;
@@ -59,7 +60,7 @@ namespace RPG.Combat
             {
                 if (path == null)
                 {
-                    mover.StartMoveAction(guardPosition);
+                    mover.StartMoveAction(guardPosition, 1.0f);
                     return;
                 }
 
@@ -71,7 +72,7 @@ namespace RPG.Combat
                 }
                 if (timeSinceArrivedAtWaypoint >= dwellDuration)
                 {
-                    mover.StartMoveAction(path.GetWaypointPosition(currentWaypoint));
+                    mover.StartMoveAction(path.GetWaypointPosition(currentWaypoint), patrolSpeedFraction);
                 }
             }
         }
