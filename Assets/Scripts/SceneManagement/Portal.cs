@@ -1,4 +1,5 @@
 using System.Collections;
+using RPG.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -27,10 +28,18 @@ namespace Rpg.SceneManagement
         private IEnumerator Transition()
         {
             DontDestroyOnLoad(gameObject);
+
+            Fader fader = FindObjectOfType<Fader>();
+
+            yield return fader.FadeOut();
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
             Portal otherPortal = GetOtherPortal();
             UpdatePlayerPostition(otherPortal);
+
+            yield return fader.FadeWait();
+            yield return fader.FadeIn();
+
             Destroy(gameObject);
         }
 
