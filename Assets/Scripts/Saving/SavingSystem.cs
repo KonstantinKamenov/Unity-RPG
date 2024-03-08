@@ -50,7 +50,7 @@ namespace RPG.Saving
 
         public void CaptureState(Dictionary<string, object> state)
         {
-            foreach (SaveableEntity e in GameObject.FindObjectsOfType<SaveableEntity>())
+            foreach (SaveableEntity e in FindObjectsOfType<SaveableEntity>())
             {
                 state[e.GetUniqueIdentifier()] = e.CaptureState();
             }
