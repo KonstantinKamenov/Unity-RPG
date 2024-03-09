@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 namespace RPG.Saving
 {
@@ -32,6 +34,20 @@ namespace RPG.Saving
             RestoreState(LoadFile(saveFile));
         }
 
+        public IEnumerator LoadLastScene(string saveFile)
+        {
+            Dictionary<string, object> state = LoadFile(saveFile);
+            if (state.ContainsKey("scene"))
+            {
+                int scene = (int)state["scene"];
+                if (scene != SceneManager.GetActiveScene().buildIndex)
+                {
+                    yield return SceneManager.LoadSceneAsync(scene);
+                }
+            }
+            RestoreState(state);
+        }
+
         private Dictionary<string, object> LoadFile(string saveFile)
         {
             string path = GetPathFromFile(saveFile);
@@ -54,6 +70,8 @@ namespace RPG.Saving
             {
                 state[e.GetUniqueIdentifier()] = e.CaptureState();
             }
+
+            state["scene"] = SceneManager.GetActiveScene().buildIndex;
         }
 
         public void RestoreState(Dictionary<string, object> state)

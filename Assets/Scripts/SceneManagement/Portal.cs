@@ -40,6 +40,7 @@ namespace Rpg.SceneManagement
             savingWrapper.Load();
             Portal otherPortal = GetOtherPortal();
             UpdatePlayerPostition(otherPortal);
+            savingWrapper.Save();
 
             yield return fader.FadeWait();
             yield return fader.FadeIn();
