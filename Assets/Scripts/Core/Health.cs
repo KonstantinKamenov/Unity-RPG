@@ -1,10 +1,11 @@
 using System;
+using RPG.Saving;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] private float health = 100f;
 
@@ -34,6 +35,17 @@ namespace RPG.Core
             if (navMesh != null) navMesh.enabled = false;
 
             isDead = true;
+        }
+
+        public object CaptureState()
+        {
+            return health;
+        }
+
+        public void RestoreState(object state)
+        {
+            health = (float)state;
+            TakeDamage(0);
         }
     }
 }
