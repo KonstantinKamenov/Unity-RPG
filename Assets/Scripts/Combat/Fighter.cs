@@ -14,6 +14,7 @@ namespace RPG.Combat
         [SerializeField] private float damage = 10f;
         [SerializeField] private GameObject weapon = null;
         [SerializeField] private Transform handPosition = null;
+        [SerializeField] private AnimatorOverrideController overrideController = null;
 
         private Health target;
         private float timeSinceLastAttack = 0f;
@@ -23,8 +24,9 @@ namespace RPG.Combat
             mover = GetComponent<Mover>();
         }
 
-        private void Start() {
-            Instantiate(weapon, handPosition);
+        private void Start()
+        {
+            SpawnWeapon();
         }
 
         private void Update()
@@ -67,7 +69,14 @@ namespace RPG.Combat
         {
             GetComponent<Animator>().SetTrigger("stopAttack");
             GetComponent<Animator>().ResetTrigger("attack");
+            GetComponent<Mover>().Cancel();
             target = null;
+        }
+
+        private void SpawnWeapon()
+        {
+            Instantiate(weapon, handPosition);
+            GetComponent<Animator>().runtimeAnimatorController = overrideController;
         }
 
         //Animation event

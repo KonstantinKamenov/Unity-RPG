@@ -160,6 +160,10 @@ PrefabInstance:
       propertyPath: handPosition
       value: 
       objectReference: {fileID: 2862743483273762380}
+    - target: {fileID: 1594704089886244733, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
+      propertyPath: overrideController
+      value: 
+      objectReference: {fileID: 22100000, guid: b36a580eb300b0a4ba9610467a348b73, type: 2}
     - target: {fileID: 5562367129262661025, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
       propertyPath: m_Name
       value: Player

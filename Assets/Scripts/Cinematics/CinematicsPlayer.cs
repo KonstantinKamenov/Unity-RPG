@@ -7,7 +7,7 @@ namespace RPG.Cinematics
 {
     public class NewBehaviourScript : MonoBehaviour
     {
-        private bool hasTriggered = false;
+        private bool hasTriggered = true;
 
         private void OnTriggerEnter(Collider other)
         {
