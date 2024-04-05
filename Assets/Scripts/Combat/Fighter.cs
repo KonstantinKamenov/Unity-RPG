@@ -9,12 +9,9 @@ namespace RPG.Combat
     {
         private Mover mover;
 
-        [SerializeField] private float weaponRange = 2.0f;
         [SerializeField] private float timeBetweenAttacks = 1f;
-        [SerializeField] private float damage = 10f;
-        [SerializeField] private GameObject weapon = null;
         [SerializeField] private Transform handPosition = null;
-        [SerializeField] private AnimatorOverrideController overrideController = null;
+        [SerializeField] private Weapon weapon = null;
 
         private Health target;
         private float timeSinceLastAttack = 0f;
@@ -36,7 +33,7 @@ namespace RPG.Combat
             if (target == null) return;
             if (target.IsDead()) return;
 
-            if (Vector3.Distance(transform.position, target.transform.position) > weaponRange)
+            if (Vector3.Distance(transform.position, target.transform.position) > weapon.GetRange())
             {
                 mover.MoveTo(target.transform.position, 1.0f);
             }
@@ -75,15 +72,15 @@ namespace RPG.Combat
 
         private void SpawnWeapon()
         {
-            Instantiate(weapon, handPosition);
-            GetComponent<Animator>().runtimeAnimatorController = overrideController;
+            if (weapon == null) return;
+            weapon.Spawn(handPosition, GetComponent<Animator>());
         }
 
         //Animation event
         public void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(damage);
+            target.TakeDamage(weapon.GetDamage());
         }
     }
 }

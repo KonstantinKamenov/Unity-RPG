@@ -1,11 +1,9 @@
 using System.Collections;
-using RPG.Saving;
-using RPG.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-namespace Rpg.SceneManagement
+namespace RPG.SceneManagement
 {
     public class Portal : MonoBehaviour
     {
