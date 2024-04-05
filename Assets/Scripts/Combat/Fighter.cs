@@ -12,6 +12,8 @@ namespace RPG.Combat
         [SerializeField] private float weaponRange = 2.0f;
         [SerializeField] private float timeBetweenAttacks = 1f;
         [SerializeField] private float damage = 10f;
+        [SerializeField] private GameObject weapon = null;
+        [SerializeField] private Transform handPosition = null;
 
         private Health target;
         private float timeSinceLastAttack = 0f;
@@ -19,6 +21,10 @@ namespace RPG.Combat
         private void Awake()
         {
             mover = GetComponent<Mover>();
+        }
+
+        private void Start() {
+            Instantiate(weapon, handPosition);
         }
 
         private void Update()
