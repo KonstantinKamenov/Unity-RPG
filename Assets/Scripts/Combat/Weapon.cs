@@ -1,3 +1,4 @@
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -10,18 +11,38 @@ namespace RPG.Combat
         [SerializeField] private float range = 2.0f;
         [SerializeField] private float damage = 10f;
         [SerializeField] private bool isLeftHanded = false;
+        [SerializeField] private Projectile projectile = null;
 
         public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
         {
-            Transform handPosition = rightHand;
-            if (isLeftHanded) handPosition = leftHand;
-            if (weaponPrefab != null) Instantiate(weaponPrefab, handPosition);
+            if (weaponPrefab != null) Instantiate(weaponPrefab, GetHandPosition(leftHand, rightHand));
             if (animatorOverride != null) animator.runtimeAnimatorController = animatorOverride;
         }
 
-        public float GetDamage()
+        private void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
         {
-            return damage;
+            Projectile newProjectile = Instantiate(projectile, GetHandPosition(leftHand, rightHand).position, Quaternion.identity) as Projectile;
+            newProjectile.SetTarget(target, damage);
+        }
+
+        private Transform GetHandPosition(Transform rightHand, Transform leftHand)
+        {
+            Transform handPosition = rightHand;
+            if (isLeftHanded) handPosition = leftHand;
+
+            return handPosition;
+        }
+
+        public void Attack(Transform rightHand, Transform leftHand, Health target)
+        {
+            if (projectile == null)
+            {
+                target.TakeDamage(damage);
+            }
+            else
+            {
+                LaunchProjectile(leftHand, rightHand, target);
+            }
         }
 
         public float GetRange()

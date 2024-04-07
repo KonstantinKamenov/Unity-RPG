@@ -83,7 +83,12 @@ namespace RPG.Combat
         public void Hit()
         {
             if (target == null) return;
-            target.TakeDamage(currentWeapon.GetDamage());
+            currentWeapon.Attack(leftHandPosition, rightHandPosition, target);
+        }
+
+        public void Shoot()
+        {
+            Hit();
         }
     }
 }
