@@ -15,13 +15,13 @@ namespace RPG.Combat
 
         public void Spawn(Transform rightHand, Transform leftHand, Animator animator)
         {
-            if (weaponPrefab != null) Instantiate(weaponPrefab, GetHandPosition(leftHand, rightHand));
+            if (weaponPrefab != null) Instantiate(weaponPrefab, GetHandPosition(rightHand, leftHand));
             if (animatorOverride != null) animator.runtimeAnimatorController = animatorOverride;
         }
 
         private void LaunchProjectile(Transform rightHand, Transform leftHand, Health target)
         {
-            Projectile newProjectile = Instantiate(projectile, GetHandPosition(leftHand, rightHand).position, Quaternion.identity) as Projectile;
+            Projectile newProjectile = Instantiate(projectile, GetHandPosition(rightHand, leftHand).position, Quaternion.identity) as Projectile;
             newProjectile.SetTarget(target, damage);
         }
 
