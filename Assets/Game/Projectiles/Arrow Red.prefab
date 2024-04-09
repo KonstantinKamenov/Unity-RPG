@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 134073999636561106, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 134073999636561106, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
+      propertyPath: isHoming
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2380559828443642341, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime0
       value: 0
@@ -46,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4690783787997762870, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
       propertyPath: m_Name
-      value: Arrow Enemy
+      value: Arrow Red
       objectReference: {fileID: 0}
     - target: {fileID: 4748349434475359340, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
       propertyPath: m_LocalPosition.x
