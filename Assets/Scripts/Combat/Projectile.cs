@@ -36,7 +36,6 @@ namespace RPG.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("aaa");
             Health hitHealth = other.GetComponent<Health>();
             if (hitHealth == null || hitHealth != target) return;
 

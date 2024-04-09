@@ -15,6 +15,7 @@ namespace RPG.Combat
         [SerializeField] private Weapon defaultWeapon = null;
 
         private Weapon currentWeapon = null;
+        private GameObject currentWeaponGameObject = null;
 
         private Health target;
         private float timeSinceLastAttack = 0f;
@@ -75,8 +76,9 @@ namespace RPG.Combat
 
         public void EquipWeapon(Weapon newWeapon)
         {
+            if (currentWeaponGameObject != null) Destroy(currentWeaponGameObject);
             currentWeapon = newWeapon;
-            currentWeapon.Spawn(rightHandPosition, leftHandPosition, GetComponent<Animator>());
+            currentWeaponGameObject = currentWeapon.Equip(rightHandPosition, leftHandPosition, GetComponent<Animator>());
         }
 
         //Animation event
