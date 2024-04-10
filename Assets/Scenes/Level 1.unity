@@ -3776,6 +3776,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e7d46a1324503884780f496389dcbfb9, type: 2}
     - target: {fileID: 9222708865922543051, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
+      propertyPath: defaultWeaponName
+      value: Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 9222708865922543051, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: overrideController
       value: 
       objectReference: {fileID: 22100000, guid: b36a580eb300b0a4ba9610467a348b73, type: 2}
