@@ -17,7 +17,15 @@ namespace RPG.Combat
         {
             GameObject equippedWeapon = null;
             if (weaponPrefab != null) equippedWeapon = Instantiate(weaponPrefab, GetHandPosition(rightHand, leftHand));
-            if (animatorOverride != null) animator.runtimeAnimatorController = animatorOverride;
+            if (animatorOverride != null)
+            {
+                animator.runtimeAnimatorController = animatorOverride;
+            }
+            else
+            {
+                AnimatorOverrideController overrideController = animator.runtimeAnimatorController as AnimatorOverrideController;
+                if (overrideController != null) animator.runtimeAnimatorController = overrideController.runtimeAnimatorController;
+            }
             return equippedWeapon;
         }
 
