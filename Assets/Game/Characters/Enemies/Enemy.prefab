@@ -80,9 +80,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8990567282051145322, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
+      propertyPath: characterClass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5417782087746026805, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
       propertyPath: health
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -915871124536388244, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
+      propertyPath: characterClass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1594704089886244733, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
       propertyPath: weapon

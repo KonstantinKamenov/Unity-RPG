@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2295530732583130790, guid: bc91c1df02b1b854b99bc15a5b9c12a7, type: 3}
+      propertyPath: characterClass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2422952506429939307, guid: bc91c1df02b1b854b99bc15a5b9c12a7, type: 3}
       propertyPath: m_Name
       value: Archer
@@ -59,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 6527371830712967135, guid: bc91c1df02b1b854b99bc15a5b9c12a7, type: 3}
       propertyPath: chaseDistance
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046357662070415964, guid: bc91c1df02b1b854b99bc15a5b9c12a7, type: 3}
+      propertyPath: characterClass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8840838690519170231, guid: bc91c1df02b1b854b99bc15a5b9c12a7, type: 3}
       propertyPath: defaultWeapon
