@@ -1,6 +1,6 @@
 namespace RPG.Combat
 {
-    using RPG.Core;
+    using RPG.Attributes;
     using UnityEngine;
 
     public class Projectile : MonoBehaviour
