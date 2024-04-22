@@ -25,19 +25,26 @@ namespace RPG.Attributes
             return isDead;
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject attacker, float damage)
         {
             health = Math.Max(0f, health - damage);
 
             if (health == 0)
             {
                 Die();
+                AwardExperience(attacker);
             }
         }
 
         public float GetPercentage()
         {
             return health / maxHealth * 100.0f;
+        }
+
+        private void AwardExperience(GameObject attacker)
+        {
+            Experience attackerExperience = attacker.GetComponent<Experience>();
+            if (attacker != null) attackerExperience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
         }
 
         public void Die()
@@ -59,7 +66,7 @@ namespace RPG.Attributes
         public void RestoreState(object state)
         {
             health = (float)state;
-            TakeDamage(0);
+            TakeDamage(null, 0);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace RPG.Combat
         [SerializeField] private float maxLifetime = 10.0f;
 
         private float damage = 0.0f;
+        private GameObject attacker;
 
         private void Update()
         {
@@ -21,11 +22,12 @@ namespace RPG.Combat
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
-        public void SetTarget(Health target, float damage)
+        public void SetTarget(GameObject attacker, Health target, float damage)
         {
+            this.attacker = attacker;
             this.target = target;
-            transform.LookAt(GetAimLocation(target.transform));
             this.damage = damage;
+            transform.LookAt(GetAimLocation(target.transform));
 
             Destroy(gameObject, maxLifetime);
         }
@@ -46,7 +48,7 @@ namespace RPG.Combat
             if (hitHealth == null || hitHealth != target || hitHealth.IsDead()) return;
 
             if (hitEffect != null) Instantiate(hitEffect, transform.position, transform.rotation);
-            hitHealth.TakeDamage(damage);
+            hitHealth.TakeDamage(attacker, damage);
             Destroy(gameObject);
         }
     }

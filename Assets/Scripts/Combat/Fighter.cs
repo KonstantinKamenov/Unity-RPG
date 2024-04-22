@@ -94,7 +94,7 @@ namespace RPG.Combat
         public void Hit()
         {
             if (target == null) return;
-            currentWeapon.Attack(leftHandPosition, rightHandPosition, target);
+            currentWeapon.Attack(gameObject, leftHandPosition, rightHandPosition, target);
         }
 
         public void Shoot()
