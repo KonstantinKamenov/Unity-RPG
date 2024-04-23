@@ -43,6 +43,8 @@ namespace RPG.Attributes
 
         private void AwardExperience(GameObject attacker)
         {
+            if (attacker == null) return;
+
             Experience attackerExperience = attacker.GetComponent<Experience>();
             if (attacker != null) attackerExperience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExpereinceReward));
         }
