@@ -10,7 +10,7 @@ namespace RPG.Attributes
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] private float health = 100f;
-        private float maxHealth;
+        private float maxHealth = 100f;
 
         private bool isDead = false;
 
