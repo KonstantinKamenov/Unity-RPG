@@ -10,7 +10,6 @@ namespace RPG.Attributes
     public class Health : MonoBehaviour, ISaveable
     {
         private float health = -1f;
-        private float maxHealth = 100f;
 
         private bool isDead = false;
 
@@ -19,7 +18,6 @@ namespace RPG.Attributes
             if(health < 0){
                 health = GetComponent<BaseStats>().GetStat(Stat.Health);
             }
-            maxHealth = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
         public bool IsDead()
@@ -40,7 +38,7 @@ namespace RPG.Attributes
 
         public float GetPercentage()
         {
-            return health / maxHealth * 100.0f;
+            return health / GetComponent<BaseStats>().GetStat(Stat.Health) * 100.0f;
         }
 
         private void AwardExperience(GameObject attacker)
