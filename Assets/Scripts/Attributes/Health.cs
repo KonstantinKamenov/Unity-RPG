@@ -46,7 +46,7 @@ namespace RPG.Attributes
             if (attacker == null) return;
 
             Experience attackerExperience = attacker.GetComponent<Experience>();
-            if (attacker != null) attackerExperience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExpereinceReward));
+            if (attacker != null) attackerExperience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.EXPReward));
         }
 
         public void Die()
