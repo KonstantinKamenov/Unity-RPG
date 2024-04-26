@@ -29,10 +29,10 @@ namespace RPG.Combat
             return equippedWeapon;
         }
 
-        private void LaunchProjectile(GameObject attacker, Transform rightHand, Transform leftHand, Health target)
+        private void LaunchProjectile(GameObject attacker, Transform rightHand, Transform leftHand, Health target, float fighterDamage)
         {
             Projectile newProjectile = Instantiate(projectile, GetHandPosition(rightHand, leftHand).position, Quaternion.identity);
-            newProjectile.SetTarget(attacker, target, damage);
+            newProjectile.SetTarget(attacker, target, fighterDamage);
         }
 
         private Transform GetHandPosition(Transform rightHand, Transform leftHand)
@@ -43,15 +43,15 @@ namespace RPG.Combat
             return handPosition;
         }
 
-        public void Attack(GameObject attacker, Transform rightHand, Transform leftHand, Health target)
+        public void Attack(GameObject attacker, Transform rightHand, Transform leftHand, Health target, float fighterDamage)
         {
             if (projectile == null)
             {
-                target.TakeDamage(attacker, damage);
+                target.TakeDamage(attacker, fighterDamage);
             }
             else
             {
-                LaunchProjectile(attacker, leftHand, rightHand, target);
+                LaunchProjectile(attacker, leftHand, rightHand, target, fighterDamage);
             }
         }
 

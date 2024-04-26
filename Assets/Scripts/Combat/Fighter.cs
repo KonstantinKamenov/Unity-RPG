@@ -2,6 +2,7 @@ using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
+using RPG.Stats;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -90,18 +91,6 @@ namespace RPG.Combat
             currentWeaponGameObject = currentWeapon.Equip(rightHandPosition, leftHandPosition, GetComponent<Animator>());
         }
 
-        //Animation event
-        public void Hit()
-        {
-            if (target == null) return;
-            currentWeapon.Attack(gameObject, leftHandPosition, rightHandPosition, target);
-        }
-
-        public void Shoot()
-        {
-            Hit();
-        }
-
         public object CaptureState()
         {
             return currentWeapon.name;
@@ -112,6 +101,19 @@ namespace RPG.Combat
             string savedWeaponName = state as string;
             Weapon weapon = Resources.Load<Weapon>(savedWeaponName);
             EquipWeapon(weapon);
+        }
+
+        //Animation event
+        public void Hit()
+        {
+            float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
+            if (target == null) return;
+            currentWeapon.Attack(gameObject, leftHandPosition, rightHandPosition, target, damage);
+        }
+
+        public void Shoot()
+        {
+            Hit();
         }
     }
 }
