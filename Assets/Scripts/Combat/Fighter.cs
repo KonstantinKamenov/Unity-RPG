@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         private Mover mover;
 
@@ -15,6 +16,7 @@ namespace RPG.Combat
         [SerializeField] private Transform rightHandPosition = null;
         [SerializeField] private Transform leftHandPosition = null;
         [SerializeField] private Weapon defaultWeapon = null;
+        [SerializeField] private bool shouldApplyModifiers = false;
 
         private Weapon currentWeapon = null;
         private GameObject currentWeaponGameObject = null;
@@ -74,6 +76,26 @@ namespace RPG.Combat
         {
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
+        }
+
+        public IEnumerable<float> GetAdditiveModifier(Stat stat)
+        {
+            if (!shouldApplyModifiers) yield return 0.0f;
+
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetDamage();
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat)
+        {
+            if (!shouldApplyModifiers) yield return 0.0f;
+
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetPercentageModifier();
+            }
         }
 
         public void Cancel()

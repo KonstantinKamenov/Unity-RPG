@@ -10,6 +10,7 @@ namespace RPG.Combat
         [SerializeField] private GameObject weaponPrefab = null;
         [SerializeField] private float range = 2.0f;
         [SerializeField] private float damage = 10f;
+        [SerializeField] private float percentageModifier = 0.0f;
         [SerializeField] private bool isLeftHanded = false;
         [SerializeField] private Projectile projectile = null;
 
@@ -58,6 +59,16 @@ namespace RPG.Combat
         public float GetRange()
         {
             return range;
+        }
+
+        public float GetDamage()
+        {
+            return damage;
+        }
+
+        public float GetPercentageModifier()
+        {
+            return percentageModifier;
         }
     }
 }

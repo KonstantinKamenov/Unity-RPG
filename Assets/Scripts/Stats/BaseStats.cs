@@ -43,9 +43,37 @@ namespace RPG.Stats
             Instantiate(levelUpParticleEffect, transform);
         }
 
+        private float GetAdditiveModiviers(Stat stat)
+        {
+            float statValue = 0.0f;
+            IModifierProvider[] providers = GetComponents<IModifierProvider>();
+            foreach (IModifierProvider provider in providers)
+            {
+                foreach (float additiveModifier in provider.GetAdditiveModifier(stat))
+                {
+                    statValue += additiveModifier;
+                }
+            }
+            return statValue;
+        }
+
+        private float GetPercentageModiviers(Stat stat)
+        {
+            float statValue = 0.0f;
+            IModifierProvider[] providers = GetComponents<IModifierProvider>();
+            foreach (IModifierProvider provider in providers)
+            {
+                foreach (float additiveModifier in provider.GetPercentageModifiers(stat))
+                {
+                    statValue += additiveModifier;
+                }
+            }
+            return statValue;
+        }
+
         public float GetStat(Stat stat)
         {
-            return progression.GetStat(characterClass, stat, GetLevel());
+            return (progression.GetStat(characterClass, stat, GetLevel()) + GetAdditiveModiviers(stat)) * (1 + GetPercentageModiviers(stat) / 100.0f);
         }
 
         public int GetLevel()
