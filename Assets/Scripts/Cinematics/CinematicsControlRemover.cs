@@ -20,6 +20,12 @@ namespace RPG.Cinematics
             GetComponent<PlayableDirector>().stopped += EnableControl;
         }
 
+        private void OnDisable()
+        {
+            GetComponent<PlayableDirector>().played -= DisableControl;
+            GetComponent<PlayableDirector>().stopped -= EnableControl;
+        }
+
         public void DisableControl(PlayableDirector playableDirector)
         {
             player.GetComponent<ActionScheduler>().CancelAction();

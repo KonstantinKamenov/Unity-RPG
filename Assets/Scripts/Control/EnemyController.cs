@@ -3,6 +3,7 @@ using RPG.Core;
 using RPG.Movement;
 using RPG.Control;
 using RPG.Attributes;
+using RPG.Utils;
 
 namespace RPG.Combat
 {
@@ -15,7 +16,7 @@ namespace RPG.Combat
         [SerializeField] private float waypointTolerance = 0.5f;
         [SerializeField] private float patrolSpeedFraction = 0.5f;
 
-        private Vector3 guardPosition;
+        private LazyValue<Vector3> guardPosition;
         private float timeSinceLastSawPlayer = Mathf.Infinity;
         private float timeSinceArrivedAtWaypoint = Mathf.Infinity;
         private int currentWaypoint = 0;
@@ -25,17 +26,23 @@ namespace RPG.Combat
         private GameObject player;
         private Health health;
 
+        private Vector3 GetInitialGuardPosition()
+        {
+            return transform.position;
+        }
+
         private void Awake()
         {
             fighter = GetComponent<Fighter>();
             mover = GetComponent<Mover>();
             player = GameObject.FindWithTag("Player");
             health = GetComponent<Health>();
+            guardPosition = new LazyValue<Vector3>(GetInitialGuardPosition);
         }
 
         private void Start()
         {
-            guardPosition = transform.position;
+            guardPosition.Evaluate();
         }
 
         private void Update()
@@ -60,7 +67,7 @@ namespace RPG.Combat
             {
                 if (path == null)
                 {
-                    mover.StartMoveAction(guardPosition, 1.0f);
+                    mover.StartMoveAction(guardPosition.val, 1.0f);
                     return;
                 }
 

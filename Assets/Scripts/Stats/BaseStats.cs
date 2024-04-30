@@ -1,4 +1,5 @@
 using System;
+using RPG.Utils;
 using UnityEngine;
 
 namespace RPG.Stats
@@ -13,25 +14,42 @@ namespace RPG.Stats
 
         public event Action onLevelUp;
 
-        private int currentLevel = 0;
+        private LazyValue<int> currentLevel;
+        private Experience experience;
+
+        private void Awake()
+        {
+            experience = GetComponent<Experience>();
+            currentLevel = new LazyValue<int>(CalculateLevel);
+        }
 
         private void Start()
         {
-            currentLevel = CalculateLevel();
+            currentLevel.Evaluate();
+        }
 
-            Experience experience = GetComponent<Experience>();
+        private void OnEnable()
+        {
             if (experience != null)
             {
                 experience.onExperienceGained += UpdateLevel;
             }
         }
 
+        private void OnDisable()
+        {
+            if (experience != null)
+            {
+                experience.onExperienceGained -= UpdateLevel;
+            }
+        }
+
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel();
-            if (newLevel > currentLevel)
+            if (newLevel > currentLevel.val)
             {
-                currentLevel = newLevel;
+                currentLevel.val = newLevel;
                 LevelUpEffect();
                 onLevelUp();
             }
@@ -78,18 +96,14 @@ namespace RPG.Stats
 
         public int GetLevel()
         {
-            if (currentLevel == 0)
-            {
-                CalculateLevel();
-            }
-            return currentLevel;
+            return currentLevel.val;
         }
 
         public int CalculateLevel()
         {
-            if (GetComponent<Experience>() == null) return startingLevel;
+            if (experience == null) return startingLevel;
 
-            float currentEXP = GetComponent<Experience>().GetExperience();
+            float currentEXP = experience.GetExperience();
             float[] levels = progression.GetStats(characterClass, Stat.TotalEXPToLevel);
             for (int i = 0; i < levels.Length; i++)
             {
