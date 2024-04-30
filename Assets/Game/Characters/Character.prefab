@@ -156,6 +156,7 @@ MonoBehaviour:
   rightHandPosition: {fileID: 0}
   leftHandPosition: {fileID: 0}
   defaultWeapon: {fileID: 0}
+  shouldApplyModifiers: 0
 --- !u!114 &765639252995540134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +181,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e07af99234fc92449653bc484a02c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
 --- !u!136 &922376808031962743
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -259,3 +259,4 @@ MonoBehaviour:
   startingLevel: 1
   characterClass: 0
   progression: {fileID: 11400000, guid: 3f110f00408a9ad4e92ab45c5d43a963, type: 2}
+  levelUpParticleEffect: {fileID: 0}
