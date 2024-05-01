@@ -1,9 +1,11 @@
 using System.Collections;
+using RPG.Control;
+using RPG.Movement;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class WeaponPickup : MonoBehaviour
+    public class WeaponPickup : MonoBehaviour, IRaycastable
     {
         [SerializeField] private Weapon weapon;
         [SerializeField] private float respawnTime = 5.0f;
@@ -26,6 +28,20 @@ namespace RPG.Combat
         {
             GetComponent<SphereCollider>().enabled = shouldShow;
             foreach (Transform child in transform) child.gameObject.SetActive(shouldShow);
+        }
+
+        public bool HandleRaycast(PlayerController playerController)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                playerController.GetComponent<Mover>().StartMoveAction(transform.position, 1.0f);
+            }
+            return true;
+        }
+
+        public CursorType GetCursorType()
+        {
+            return CursorType.Pickup;
         }
     }
 }

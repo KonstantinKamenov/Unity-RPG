@@ -4,6 +4,8 @@ using RPG.Combat;
 using RPG.Attributes;
 using System.Collections.Generic;
 using System;
+using UnityEngine.EventSystems;
+using System.Linq;
 
 namespace RPG.Control
 {
@@ -13,13 +15,6 @@ namespace RPG.Control
 
         private Health health;
         private Dictionary<CursorType, CursorMapping> mappingsDict = null;
-
-        private enum CursorType
-        {
-            None,
-            Move,
-            Attack
-        }
 
         [System.Serializable]
         private struct CursorMapping
@@ -35,52 +30,49 @@ namespace RPG.Control
             mappingsDict = new Dictionary<CursorType, CursorMapping>();
             foreach (CursorMapping mapping in cursorMappings)
             {
-                mappingsDict.Add(mapping.type, mapping);
+                mappingsDict[mapping.type] = mapping;
             }
         }
 
         private void Update()
         {
-            if (health.IsDead()) return;
-            if (InteractWithCombat())
+            if (InteractWithUI()) return;
+            if (health.IsDead())
             {
-                SetCursor(CursorType.Attack);
+                SetCursor(CursorType.Dead);
                 return;
             }
-            if (InteractWithMovement())
-            {
-                SetCursor(CursorType.Move);
-                return;
-            }
+            if (InteractWithComponent()) return;
+            if (InteractWithMovement()) return;
             SetCursor(CursorType.None);
         }
 
-        private bool InteractWithCombat()
+        private bool InteractWithUI()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
-            CombatTarget finalTarget = null;
-            float minDist = Mathf.Infinity;
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SetCursor(CursorType.UI);
+                return true;
+            }
+            return false;
+        }
 
+        private bool InteractWithComponent()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay()).OrderBy(hit => hit.distance).ToArray();
             foreach (RaycastHit hit in hits)
             {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null) continue;
-                if (target.tag == "Player") continue;
-                if (!target.IsValidTarget()) continue;
-
-                if (hit.distance < minDist)
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
+                foreach (IRaycastable raycastable in raycastables)
                 {
-                    minDist = hit.distance;
-                    finalTarget = target;
+                    if (raycastable.HandleRaycast(this))
+                    {
+                        SetCursor(raycastable.GetCursorType());
+                        return true;
+                    }
                 }
             }
-            if (finalTarget == null) return false;
-
-            if (Input.GetMouseButton(0))
-            {
-                GetComponent<Fighter>().Attack(finalTarget);
-            }
-            return true;
+            return false;
         }
 
         private bool InteractWithMovement()
@@ -93,6 +85,7 @@ namespace RPG.Control
                 {
                     GetComponent<Mover>().StartMoveAction(hit.point, 1.0f);
                 }
+                SetCursor(CursorType.Move);
                 return true;
             }
             return false;
