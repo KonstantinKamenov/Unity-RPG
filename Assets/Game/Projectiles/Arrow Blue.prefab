@@ -12,6 +12,22 @@ PrefabInstance:
       propertyPath: isHoming
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 134073999636561106, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 134073999636561106, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 134073999636561106, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 134073999636561106, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2380559828443642341, guid: dad73f2665673674f82a6da6367ad90f, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 1

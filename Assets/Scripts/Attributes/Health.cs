@@ -11,7 +11,8 @@ namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
-        [SerializeField] private UnityEvent<float> takeDamage;
+        [SerializeField] private UnityEvent<float> onTakeDamage;
+        [SerializeField] private UnityEvent onDie;
 
         private LazyValue<float> health;
         private bool isDead = false;
@@ -54,10 +55,11 @@ namespace RPG.Attributes
         public void TakeDamage(GameObject attacker, float damage)
         {
             health.val = Math.Max(0f, health.val - damage);
-            takeDamage.Invoke(damage);
+            onTakeDamage.Invoke(damage);
 
             if (health.val == 0)
             {
+                onDie.Invoke();
                 Die();
                 AwardExperience(attacker);
             }
@@ -100,7 +102,11 @@ namespace RPG.Attributes
         public void RestoreState(object state)
         {
             health.val = (float)state;
-            TakeDamage(null, 0);
+
+            if (health.val == 0)
+            {
+                Die();
+            }
         }
     }
 }

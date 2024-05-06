@@ -2,6 +2,7 @@ namespace RPG.Combat
 {
     using RPG.Attributes;
     using UnityEngine;
+    using UnityEngine.Events;
 
     public class Projectile : MonoBehaviour
     {
@@ -10,6 +11,9 @@ namespace RPG.Combat
         [SerializeField] private bool isHoming = false;
         [SerializeField] private GameObject hitEffect = null;
         [SerializeField] private float maxLifetime = 10.0f;
+        [SerializeField] private GameObject[] intantDestroy;
+        [SerializeField] private float destroyAfter = 5.0f;
+        [SerializeField] private UnityEvent onHit;
 
         private float damage = 0.0f;
         private GameObject attacker;
@@ -47,9 +51,14 @@ namespace RPG.Combat
             Health hitHealth = other.GetComponent<Health>();
             if (hitHealth == null || hitHealth != target || hitHealth.IsDead()) return;
 
+            onHit.Invoke();
             if (hitEffect != null) Instantiate(hitEffect, transform.position, transform.rotation);
             hitHealth.TakeDamage(attacker, damage);
-            Destroy(gameObject);
+            foreach (GameObject go in intantDestroy)
+            {
+                Destroy(go);
+            }
+            Destroy(gameObject, destroyAfter);
         }
     }
 }
