@@ -33,6 +33,7 @@ namespace RPG.Utils
 
         public void Evaluate()
         {
+            if (isInitialized) return;
             isInitialized = true;
             _val = initializer();
         }

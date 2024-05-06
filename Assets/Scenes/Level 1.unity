@@ -3845,7 +3845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2387906844129993113, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_CameraDistance
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2462155166005757801, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -3857,15 +3857,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3286389927814007515, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -56.094105
+      value: -55.17842
       objectReference: {fileID: 0}
     - target: {fileID: 3286389927814007515, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.234375
+      value: 22.955727
       objectReference: {fileID: 0}
     - target: {fileID: 3286389927814007515, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -80.20329
+      value: -78.96774
       objectReference: {fileID: 0}
     - target: {fileID: 3286389927814007515, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4033,15 +4033,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8947158685678468732, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -56.094105
+      value: -55.17842
       objectReference: {fileID: 0}
     - target: {fileID: 8947158685678468732, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.234375
+      value: 22.955727
       objectReference: {fileID: 0}
     - target: {fileID: 8947158685678468732, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -80.20329
+      value: -78.96774
       objectReference: {fileID: 0}
     - target: {fileID: 9042035177794874078, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_Mesh

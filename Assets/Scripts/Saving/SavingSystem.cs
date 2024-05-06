@@ -19,7 +19,7 @@ namespace RPG.Saving
         private void SaveFile(string saveFile, object state)
         {
             string path = GetPathFromFile(saveFile);
-            Debug.Log("Saving to " + path);
+            //Debug.Log("Saving to " + path);
             using (FileStream fileStream = File.Open(path, FileMode.Create))
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -66,7 +66,7 @@ namespace RPG.Saving
                 return new Dictionary<string, object>();
             }
 
-            Debug.Log("Loading from " + path);
+            //Debug.Log("Loading from " + path);
             using (FileStream fileStream = File.Open(path, FileMode.Open))
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
