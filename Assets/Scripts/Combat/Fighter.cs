@@ -16,24 +16,24 @@ namespace RPG.Combat
         [SerializeField] private float timeBetweenAttacks = 1f;
         [SerializeField] private Transform rightHandPosition = null;
         [SerializeField] private Transform leftHandPosition = null;
-        [SerializeField] private Weapon defaultWeapon = null;
+        [SerializeField] private WeaponConfig defaultWeapon = null;
         [SerializeField] private bool shouldApplyModifiers = false;
 
+        private WeaponConfig currentWeaponConfig;
         private LazyValue<Weapon> currentWeapon;
-        private GameObject currentWeaponGameObject = null;
 
         private Health target;
         private float timeSinceLastAttack = 0f;
 
         private Weapon InitializeCurrentWeapon()
         {
-            AttachWeapon(defaultWeapon);
-            return defaultWeapon;
+            return AttachWeapon(defaultWeapon);
         }
 
         private void Awake()
         {
             mover = GetComponent<Mover>();
+            currentWeaponConfig = defaultWeapon;
             currentWeapon = new LazyValue<Weapon>(InitializeCurrentWeapon);
         }
 
@@ -49,7 +49,7 @@ namespace RPG.Combat
             if (target == null) return;
             if (target.IsDead()) return;
 
-            if (Vector3.Distance(transform.position, target.transform.position) > currentWeapon.val.GetRange())
+            if (Vector3.Distance(transform.position, target.transform.position) > currentWeaponConfig.GetRange())
             {
                 mover.MoveTo(target.transform.position, 1.0f);
             }
@@ -89,7 +89,7 @@ namespace RPG.Combat
 
             if (stat == Stat.Damage)
             {
-                yield return currentWeapon.val.GetDamage();
+                yield return currentWeaponConfig.GetDamage();
             }
         }
 
@@ -99,7 +99,7 @@ namespace RPG.Combat
 
             if (stat == Stat.Damage)
             {
-                yield return currentWeapon.val.GetPercentageModifier();
+                yield return currentWeaponConfig.GetPercentageModifier();
             }
         }
 
@@ -111,27 +111,28 @@ namespace RPG.Combat
             target = null;
         }
 
-        public void EquipWeapon(Weapon newWeapon)
+        public void EquipWeapon(WeaponConfig newWeapon)
         {
-            if (currentWeaponGameObject != null) Destroy(currentWeaponGameObject);
-            currentWeapon.val = newWeapon;
-            AttachWeapon(currentWeapon.val);
+            if (currentWeapon != null) Destroy(currentWeapon.val);
+            currentWeaponConfig = newWeapon;
+            AttachWeapon(currentWeaponConfig);
         }
 
-        private void AttachWeapon(Weapon weapon)
+        private Weapon AttachWeapon(WeaponConfig weapon)
         {
-            currentWeaponGameObject = weapon.Equip(rightHandPosition, leftHandPosition, GetComponent<Animator>());
+            currentWeapon.val = weapon.Equip(rightHandPosition, leftHandPosition, GetComponent<Animator>());
+            return currentWeapon.val;
         }
 
         public object CaptureState()
         {
-            return currentWeapon.val.name;
+            return currentWeaponConfig.name;
         }
 
         public void RestoreState(object state)
         {
             string savedWeaponName = state as string;
-            Weapon weapon = Resources.Load<Weapon>(savedWeaponName);
+            WeaponConfig weapon = Resources.Load<WeaponConfig>(savedWeaponName);
             EquipWeapon(weapon);
         }
 
@@ -140,7 +141,20 @@ namespace RPG.Combat
         {
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
             if (target == null) return;
-            currentWeapon.val.Attack(gameObject, leftHandPosition, rightHandPosition, target, damage);
+
+            if (currentWeapon.val != null)
+            {
+                currentWeapon.val.OnHit();
+            }
+
+            if (currentWeaponConfig.HasProjectile())
+            {
+                currentWeaponConfig.LaunchProjectile(gameObject, leftHandPosition, rightHandPosition, target, damage);
+            }
+            else
+            {
+                target.TakeDamage(gameObject, damage);
+            }
         }
 
         public void Shoot()

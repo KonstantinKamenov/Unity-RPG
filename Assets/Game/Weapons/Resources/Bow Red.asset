@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Bow Red
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: 789c478f4a600cf49923803bb70c1443, type: 2}
-  weaponPrefab: {fileID: 1271742046495163363, guid: b492d1847719bc64fa81d624e9ca661c, type: 3}
+  weaponPrefab: {fileID: -1367157144984628252, guid: b492d1847719bc64fa81d624e9ca661c, type: 3}
   range: 10
   damage: 10
+  percentageModifier: 0
   isLeftHanded: 1
   projectile: {fileID: 1742539416942095663, guid: d5fb51b822508f246826417b5e297ef1, type: 3}

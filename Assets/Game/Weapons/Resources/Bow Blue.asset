@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Bow Blue
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: 789c478f4a600cf49923803bb70c1443, type: 2}
-  weaponPrefab: {fileID: 1271742046495163363, guid: b492d1847719bc64fa81d624e9ca661c, type: 3}
+  weaponPrefab: {fileID: -1367157144984628252, guid: b492d1847719bc64fa81d624e9ca661c, type: 3}
   range: 10
   damage: 10
+  percentageModifier: 0
   isLeftHanded: 1
   projectile: {fileID: 43232169153947898, guid: 966b5df0612d67041a4e5f45a449ef36, type: 3}
