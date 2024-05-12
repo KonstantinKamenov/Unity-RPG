@@ -9,7 +9,7 @@ namespace RPG.Combat
     {
         public bool HandleRaycast(PlayerController playerController)
         {
-            if (tag == "Player" || !IsValidTarget()) return false;
+            if (tag == "Player" || !playerController.GetComponent<Fighter>().CanAttack(this)) return false;
 
             if (Input.GetMouseButton(0))
             {
@@ -21,11 +21,6 @@ namespace RPG.Combat
         public CursorType GetCursorType()
         {
             return CursorType.Attack;
-        }
-
-        public bool IsValidTarget()
-        {
-            return !GetComponent<Health>().IsDead();
         }
     }
 }

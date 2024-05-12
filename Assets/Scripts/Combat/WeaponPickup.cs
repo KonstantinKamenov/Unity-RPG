@@ -35,6 +35,8 @@ namespace RPG.Combat
 
         public bool HandleRaycast(PlayerController playerController)
         {
+            if (!playerController.GetComponent<Mover>().CanMoveTo(transform.position)) return false;
+
             if (Input.GetMouseButtonDown(0))
             {
                 playerController.GetComponent<Mover>().StartMoveAction(transform.position, 1.0f);

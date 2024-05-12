@@ -136,6 +136,14 @@ namespace RPG.Combat
             EquipWeapon(weapon);
         }
 
+        public bool CanAttack(CombatTarget target)
+        {
+            if (target.GetComponent<Health>().IsDead()) return false;
+            if (!GetComponent<Mover>().CanMoveTo(target.transform.position)) return false;
+
+            return true;
+        }
+
         //Animation event
         public void Hit()
         {

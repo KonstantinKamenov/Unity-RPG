@@ -54,7 +54,7 @@ namespace RPG.Combat
             Vector3 playerPostition = player.transform.position;
             float distanceToPlayer = Vector3.Distance(transform.position, playerPostition);
 
-            if (distanceToPlayer <= chaseDistance && player.GetComponent<CombatTarget>().IsValidTarget())
+            if (distanceToPlayer <= chaseDistance && GetComponent<Fighter>().CanAttack(player.GetComponent<CombatTarget>()))
             {
                 timeSinceLastSawPlayer = 0;
                 fighter.Attack(player.GetComponent<CombatTarget>());
