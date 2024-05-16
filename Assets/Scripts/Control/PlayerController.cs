@@ -12,6 +12,7 @@ namespace RPG.Control
     {
         [SerializeField] private CursorMapping[] cursorMappings;
         [SerializeField] private float maxNavMeshDistance = 0.5f;
+        [SerializeField] private float raycastRadius = 1.0f;
 
         private Health health;
         private Dictionary<CursorType, CursorMapping> mappingsDict = null;
@@ -59,7 +60,7 @@ namespace RPG.Control
 
         private bool InteractWithComponent()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay()).OrderBy(hit => hit.distance).ToArray();
+            RaycastHit[] hits = Physics.SphereCastAll(GetMouseRay(), raycastRadius).OrderBy(hit => hit.distance).ToArray();
             foreach (RaycastHit hit in hits)
             {
                 IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();

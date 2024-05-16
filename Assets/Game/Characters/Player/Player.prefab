@@ -120,6 +120,10 @@ PrefabInstance:
       propertyPath: overrideController
       value: 
       objectReference: {fileID: 22100000, guid: b36a580eb300b0a4ba9610467a348b73, type: 2}
+    - target: {fileID: 3260567811760426957, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
+      propertyPath: m_Radius
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5562367129262661025, guid: d8444b2e89be9a441846b13b281006e4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -227,7 +231,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: f8c873f1e53e83f4aabf342d6be1dfc3, type: 3}
     hotspot: {x: 4, y: 0}
   maxNavMeshDistance: 0.5
-  maxPathLength: 40
+  raycastRadius: 1
 --- !u!114 &6890477162432294172
 MonoBehaviour:
   m_ObjectHideFlags: 0

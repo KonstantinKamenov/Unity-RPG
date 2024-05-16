@@ -3952,6 +3952,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.10657359
       objectReference: {fileID: 0}
+    - target: {fileID: 6294153909401181744, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
+      propertyPath: raycastRadius
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6435904381201129792, guid: 776895c5e3f6a594eb9b2159ade387dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.084
