@@ -15,11 +15,13 @@ namespace RPG.Combat
         [SerializeField] private PatrolPath path;
         [SerializeField] private float waypointTolerance = 0.5f;
         [SerializeField] private float patrolSpeedFraction = 0.5f;
+        [SerializeField] private float aggressionDuration = 2.0f;
 
         private LazyValue<Vector3> guardPosition;
         private float timeSinceLastSawPlayer = Mathf.Infinity;
         private float timeSinceArrivedAtWaypoint = Mathf.Infinity;
         private int currentWaypoint = 0;
+        private float timeSinceAggrevated = Mathf.Infinity;
 
         private Fighter fighter;
         private Mover mover;
@@ -51,10 +53,7 @@ namespace RPG.Combat
 
             timeSinceLastSawPlayer += Time.deltaTime;
 
-            Vector3 playerPostition = player.transform.position;
-            float distanceToPlayer = Vector3.Distance(transform.position, playerPostition);
-
-            if (distanceToPlayer <= chaseDistance && GetComponent<Fighter>().CanAttack(player.GetComponent<CombatTarget>()))
+            if (IsAggrevated() && GetComponent<Fighter>().CanAttack(player.GetComponent<CombatTarget>()))
             {
                 timeSinceLastSawPlayer = 0;
                 fighter.Attack(player.GetComponent<CombatTarget>());
@@ -82,6 +81,18 @@ namespace RPG.Combat
                     mover.StartMoveAction(path.GetWaypointPosition(currentWaypoint), patrolSpeedFraction);
                 }
             }
+        }
+
+        public void Aggrevate()
+        {
+            timeSinceAggrevated = 0.0f;
+        }
+
+        private bool IsAggrevated()
+        {
+            Vector3 playerPostition = player.transform.position;
+            float distanceToPlayer = Vector3.Distance(transform.position, playerPostition);
+            return distanceToPlayer <= chaseDistance || timeSinceAggrevated < aggressionDuration;
         }
 
         private bool IsAtWaypoint()
