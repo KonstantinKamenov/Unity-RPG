@@ -16,6 +16,7 @@ namespace RPG.Combat
         [SerializeField] private float waypointTolerance = 0.5f;
         [SerializeField] private float patrolSpeedFraction = 0.5f;
         [SerializeField] private float aggressionDuration = 2.0f;
+        [SerializeField] private float shoutDistance = 3.0f;
 
         private LazyValue<Vector3> guardPosition;
         private float timeSinceLastSawPlayer = Mathf.Infinity;
@@ -55,8 +56,7 @@ namespace RPG.Combat
 
             if (IsAggrevated() && GetComponent<Fighter>().CanAttack(player.GetComponent<CombatTarget>()))
             {
-                timeSinceLastSawPlayer = 0;
-                fighter.Attack(player.GetComponent<CombatTarget>());
+                AttackBehaviour();
             }
             else if (timeSinceLastSawPlayer <= suspicionDuration)
             {
@@ -80,6 +80,25 @@ namespace RPG.Combat
                 {
                     mover.StartMoveAction(path.GetWaypointPosition(currentWaypoint), patrolSpeedFraction);
                 }
+            }
+        }
+
+        private void AttackBehaviour()
+        {
+            timeSinceLastSawPlayer = 0;
+            fighter.Attack(player.GetComponent<CombatTarget>());
+
+            AggrevateNearbyEnemies();
+        }
+
+        private void AggrevateNearbyEnemies()
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, shoutDistance, Vector3.up, 0);
+
+            foreach (RaycastHit hit in hits)
+            {
+                EnemyController enemy = hit.transform.GetComponent<EnemyController>();
+                if (enemy != null) enemy.Aggrevate();
             }
         }
 
